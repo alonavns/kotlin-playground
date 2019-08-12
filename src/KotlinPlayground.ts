@@ -1,15 +1,14 @@
-import {API_URLS, RUNTIME_CONFIG} from './config';
+import { API_URLS, RUNTIME_CONFIG } from './config';
 import ExecutableCode from './executable-code';
-import {waitForNode} from './utils';
+import { waitForNode } from './utils';
 import {
   default as discoursePreviewPanelHandler,
   Selectors as DiscourseSelectors
 } from './discourse-preview-panel-handler';
 // support IE11
-import {polyfill} from "es6-promise";
+import { polyfill } from "es6-promise";
 
 polyfill();
-
 
 /**
  * @typedef {Object} options
@@ -27,7 +26,19 @@ polyfill();
  * @param {Object} options
  * @return {Promise<Array<ExecutableCode>>}
  */
-export default function create(selector, options = {}) {
+
+interface IOptions {
+  server?: string;
+  onChange?: Function;
+  onTestPassed?: Function;
+  onRun?: Function;
+  onError?: Function;
+  onConsoleOpen?: Function;
+  onConsoleClose?: Function;
+  callBack?: Function;
+}
+
+export default function create(selector, options: IOptions = {}) {
   API_URLS.server = options.server || API_URLS.server;
   return ExecutableCode.create(selector, options);
 }
@@ -46,7 +57,7 @@ create.discourse = function (selector) {
 };
 
 // Auto initialization via data-selector <script> attribute
-const {selector, discourseSelector} = RUNTIME_CONFIG;
+const { selector, discourseSelector } = RUNTIME_CONFIG;
 
 if (selector || discourseSelector) {
   document.addEventListener('DOMContentLoaded', () => {

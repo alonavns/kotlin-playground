@@ -14,11 +14,7 @@ module.exports = (params = {}) => {
   const config = {
     mode: env,
     entry: {
-      [mainEntryName]: ['./src/index'],
-      REMOVE_ME: [
-        `!!file-loader?name=${examplesPath}examples.css!github-markdown-css/github-markdown.css`,
-        `!!file-loader?name=${examplesPath}examples-highlight.css!highlight.js/styles/github.css`
-      ]
+      main: './src/index.tsx'
     },
 
     output: {
@@ -31,8 +27,17 @@ module.exports = (params = {}) => {
 
     devtool: 'source-map',
 
+    resolve: {
+      extensions: ['.ts', '.tsx', '.js', '.jsx']
+    },
+
     module: {
       rules: [
+        {
+          test: /\.(ts|tsx)$/,
+          include: path.resolve(__dirname, 'src'),
+          loader: 'awesome-typescript-loader'
+        },
         {
           test: /\.js$/,
           include: path.resolve(__dirname, 'src'),
@@ -66,9 +71,8 @@ module.exports = (params = {}) => {
 
     plugins: [
       new HtmlPlugin({
-        template: 'examples.md',
-        filename: isServer ? 'index.html' : 'examples/index.html',
-        inject: false
+        template: './src/index.html',
+        filename: './index.html'
       }),
 
       new webpack.optimize.ModuleConcatenationPlugin(),

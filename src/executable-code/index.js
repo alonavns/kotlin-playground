@@ -235,7 +235,7 @@ export default class ExecutableCode {
 
   /**
    * @param {string|Node|NodeList} target
-   * @param {Function} eventFunctions
+   * @param {Object} eventFunctions
    * @return {Promise<Array<ExecutableCode>>}
    */
   static create(target, eventFunctions) {

@@ -1,13 +1,13 @@
-import {getConfigFromElement, getCurrentScript} from './utils';
+import { getConfigFromElement, getCurrentScript } from './utils';
 
 const currentScript = getCurrentScript();
 
-export const RUNTIME_CONFIG = {...getConfigFromElement(currentScript)};
+export const RUNTIME_CONFIG = { ...getConfigFromElement(currentScript) };
 
 /**
  * API Paths
  *
- * @type {{COMPILE: string, COMPLETE: string, VERSIONS: string, JQUERY: string, KOTLIN_JS: string}}
+ * @type {{server: string, COMPILE: string, COMPLETE: string, VERSIONS: string, JQUERY: string, KOTLIN_JS: string}}
  */
 export const API_URLS = {
   server: RUNTIME_CONFIG.server || __WEBDEMO_URL__,
