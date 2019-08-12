@@ -6,7 +6,7 @@ import {
   Selectors as DiscourseSelectors
 } from './discourse-preview-panel-handler';
 // support IE11
-import { polyfill } from "es6-promise";
+import { polyfill } from 'es6-promise';
 
 polyfill();
 
@@ -38,7 +38,7 @@ interface IOptions {
   callBack?: Function;
 }
 
-export default function create(selector, options: IOptions = {}) {
+export default function create(selector: string, options: IOptions = {}) {
   API_URLS.server = options.server || API_URLS.server;
   return ExecutableCode.create(selector, options);
 }
@@ -51,7 +51,7 @@ create.default = create;
  * @param {string} selector
  * @return {Promise<Array<ExecutableCode>>}
  */
-create.discourse = function (selector) {
+create.discourse = (selector: string): Promise<Array<ExecutableCode>> => {
   discoursePreviewPanelHandler();
   return create(selector);
 };

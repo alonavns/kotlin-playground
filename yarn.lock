@@ -640,6 +640,12 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
+"@types/deepmerge@^2.2.0":
+  version "2.2.0"
+  resolved "https://npm.ci.babelforce.com:4873/@types%2fdeepmerge/-/deepmerge-2.2.0.tgz#6f63896c217f3164782f52d858d9f3a927139f64"
+  dependencies:
+    deepmerge "*"
+
 "@types/events@*":
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/@types/events/-/events-3.0.0.tgz#2862f3f58a9a7f7c3e78d79f130dd4d71c25c2a7"
@@ -2110,6 +2116,10 @@ deep-equal@^1.0.1:
 deep-extend@^0.6.0:
   version "0.6.0"
   resolved "https://registry.yarnpkg.com/deep-extend/-/deep-extend-0.6.0.tgz#c4fa7c95404a17a9c3e8ca7e1537312b736330ac"
+
+deepmerge@*:
+  version "4.0.0"
+  resolved "https://npm.ci.babelforce.com:4873/deepmerge/-/deepmerge-4.0.0.tgz#3e3110ca29205f120d7cb064960a39c3d2087c09"
 
 deepmerge@^1.5.0:
   version "1.5.2"

@@ -78,10 +78,11 @@ module.exports = (params = {}) => {
       new webpack.optimize.ModuleConcatenationPlugin(),
 
       new webpack.DefinePlugin({
-        __WEBDEMO_URL__: JSON.stringify(webDemoUrl),
         __IS_PRODUCTION__: isProduction,
         __LIBRARY_NAME__: JSON.stringify(libraryName),
         'process.env': {
+          __WEBDEMO_URL__: JSON.stringify(webDemoUrl),
+          __LIBRARY_NAME__: JSON.stringify(libraryName),
           NODE_ENV: JSON.stringify(env)
         }
       }),

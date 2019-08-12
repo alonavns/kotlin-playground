@@ -1,16 +1,23 @@
 class TargetPlatform {
-  constructor(id, printableName) {
+  id: string;
+  printableName: string;
+  static JS: any;
+  static JUNIT: any;
+  static CANVAS: any;
+  static JAVA: any;
+
+  constructor(id: string, printableName: string) {
     this.id = id;
     this.printableName = printableName;
   }
 
-  static getById(id) {
+  static getById(id: string) {
     switch (id) {
-      case "js":
+      case 'js':
         return TargetPlatform.JS;
-      case "junit":
+      case 'junit':
         return TargetPlatform.JUNIT;
-      case "canvas":
+      case 'canvas':
         return TargetPlatform.CANVAS;
       default:
         return TargetPlatform.JAVA;

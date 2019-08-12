@@ -5,42 +5,42 @@ import defaultConfig from './config';
  * Codemirror themes.
  * @type {{DARCULA: string, DEFAULT: string}}
  */
-export const THEMES = {
-  DARCULA: "darcula",
-  IDEA: "idea",
-  DEFAULT: "default"
+export const THEMES: { DARCULA: string; DEFAULT: string; IDEA: string } = {
+  DARCULA: 'darcula',
+  DEFAULT: 'default',
+  IDEA: 'idea'
 };
 
 /**
  * CodeMirror readonly tag
  * @type {string}
  */
-export const READ_ONLY_TAG = 'nocursor';
+export const READ_ONLY_TAG: string = 'nocursor';
 
 /**
  * @param {*} arrayLike
  * @return {Array}
  */
-export function arrayFrom(arrayLike) {
+export function arrayFrom(arrayLike: any): Array<any> {
   return Array.prototype.slice.call(arrayLike, 0);
 }
 
 /**
  * Convert first letter of string in upper case`
- * @param string
+ * @param {string | any} string
  * @returns {string}
  */
-export function capitalize(string) {
+export function capitalize(string: string | any): string {
   if (typeof string !== 'string') return '';
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
 /**
  * Convert dashed string to camelCase`
- * @param string
+ * @param {string} string
  * @returns {string}
  */
-export function dashToCamel(string) {
+export function dashToCamel(string: string): string {
   return string
     .split('-')
     .map((el, i) => {
@@ -55,13 +55,13 @@ export function dashToCamel(string) {
  * @param {boolean} mergeWithDefaults
  * @return {Object<string, string>}
  */
-export function getConfigFromElement(element, mergeWithDefaults = false) {
+export function getConfigFromElement(element: Element, mergeWithDefaults: boolean = false): { [s: string]: string; } {
   if (!element || !element.attributes) {
     return {};
   }
 
   const attrs = arrayFrom(element.attributes)
-    .reduce((acc, {name, value}) => {
+    .reduce((acc, { name, value }) => {
       if (name.indexOf('data-') === -1) return acc;
 
       const className = dashToCamel(name.replace('data-', ''));
@@ -77,7 +77,7 @@ export function getConfigFromElement(element, mergeWithDefaults = false) {
 /**
  * @return {HTMLScriptElement|null}
  */
-export function getCurrentScript() {
+export function getCurrentScript(): HTMLScriptElement | null {
   const scripts = document.getElementsByTagName('script');
   return scripts[scripts.length - 1] || null;
 }
@@ -85,29 +85,29 @@ export function getCurrentScript() {
 /**
  * @return {boolean}
  */
-export function isEmbeddedFromCdn() {
+export function isEmbeddedFromCdn(): boolean {
   const currentScript = getCurrentScript();
   const src = currentScript.src ? currentScript.src : null;
-  return src && src.indexOf(__CDN_URL__) !== -1;
+  return src && src.indexOf(process.env.__CDN_URL__) !== -1;
 }
 
 /**
  * @param {Element} newNode
  * @param {Element} referenceNode
  */
-export function insertAfter(newNode, referenceNode) {
+export function insertAfter(newNode: Element, referenceNode: Element) {
   referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
 }
 
 /**
  * Convert all `<` and `>` to `&lt;` and `&gt;`
- * @param string
+ * @param {string} string
  * @returns {*}
  */
-export function processingHtmlBrackets(string) {
+export function processingHtmlBrackets(string: string): any {
   const tagsToReplace = {
-    "&lt;": "<",
-    "&gt;": ">"
+    '&lt;': '<',
+    '&gt;': '>'
   };
   let unEscapedString = string;
   Object.keys(tagsToReplace).forEach(function (key) {
@@ -118,15 +118,15 @@ export function processingHtmlBrackets(string) {
 
 /**
  * Unescape special characters from string
- * @param string
+ * @param {string} string
  * @returns {string}
  */
-export function unEscapeString(string) {
+export function unEscapeString(string: string): string {
   const tagsToReplace = {
-    "<": "&amp;lt;",
-    ">": "&amp;gt;",
-    "&": "&amp;",
-    " ": "%20"
+    '<': '&amp;lt;',
+    '>': '&amp;gt;',
+    '&': '&amp;',
+    ' ': '%20'
   };
   let unEscapedString = string;
   Object.keys(tagsToReplace).forEach(function (key) {
@@ -137,13 +137,13 @@ export function unEscapeString(string) {
 
 /**
  * convert all `<` and `>` to `&lt;` and `&gt;`
- * @param string
+ * @param {string} string
  * @returns {*}
  */
-export function convertToHtmlTag(string) {
+export function convertToHtmlTag(string: string): any {
   const tagsToReplace = {
-    "&lt;": "&amp;lt;",
-    "&gt;": "&amp;gt;",
+    '&lt;': '&amp;lt;',
+    '&gt;': '&amp;gt;',
   };
   let unEscapedString = string;
   Object.keys(tagsToReplace).forEach(function (key) {
@@ -154,19 +154,19 @@ export function convertToHtmlTag(string) {
 
 /**
  * Getting count of lines
- * @param string
+ * @param {string} string
  * @returns {number}
  */
-export function countLines(string) {
+export function countLines(string: string): number {
   return (string.match(/\n/g) || []).length;
 }
 
 /**
  * Find and replace whitespaces from either the beginning or the end of the string.
- * @param string
+ * @param {string} string
  * @returns {string}
  */
-export function replaceWhiteSpaces(string) {
+export function replaceWhiteSpaces(string: string): string {
   return string.replace(/^\s+|\s+$/g, '');
 }
 

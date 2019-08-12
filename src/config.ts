@@ -9,8 +9,13 @@ export const RUNTIME_CONFIG = { ...getConfigFromElement(currentScript) };
  *
  * @type {{server: string, COMPILE: string, COMPLETE: string, VERSIONS: string, JQUERY: string, KOTLIN_JS: string}}
  */
-export const API_URLS = {
-  server: RUNTIME_CONFIG.server || __WEBDEMO_URL__,
+
+interface IAPI_URLS {
+  [x: string]: string;
+}
+
+export const API_URLS: IAPI_URLS = {
+  server: RUNTIME_CONFIG.server || process.env.__WEBDEMO_URL__,
   get COMPILE() {
     return `${this.server}/kotlinServer?type=run&runConf=`;
   },

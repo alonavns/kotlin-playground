@@ -17,8 +17,8 @@ import 'codemirror/mode/shell/shell';
 import 'codemirror/mode/swift/swift';
 import merge from 'deepmerge';
 import Set from 'es6-set/polyfill';
-import defaultConfig, {API_URLS} from '../config';
-import {arrayFrom, getConfigFromElement, insertAfter, READ_ONLY_TAG, replaceWhiteSpaces, THEMES} from '../utils';
+import defaultConfig, { API_URLS } from '../config';
+import { arrayFrom, getConfigFromElement, insertAfter, READ_ONLY_TAG, replaceWhiteSpaces, THEMES } from '../utils';
 import WebDemoApi from "../webdemo-api";
 import TargetPlatform from '../target-platform'
 import ExecutableFragment from './executable-fragment';
@@ -104,7 +104,7 @@ export default class ExecutableCode {
     const mountNode = document.createElement('div');
     insertAfter(mountNode, targetNode);
 
-    const view = ExecutableFragment.render(mountNode, {eventFunctions});
+    const view = ExecutableFragment.render(mountNode, { eventFunctions });
     view.update(Object.assign({
       code: code,
       lines: lines,
@@ -290,10 +290,10 @@ export default class ExecutableCode {
               ? versions[versions.length - 1].version
               : latestStableVersion;
           }
-          instances.push(new ExecutableCode(node, {compilerVersion}, eventFunctions));
+          instances.push(new ExecutableCode(node, { compilerVersion }, eventFunctions));
         } else {
           console.error('Cann\'t get kotlin version from server');
-          instances.push(new ExecutableCode(node, {highlightOnly: true}));
+          instances.push(new ExecutableCode(node, { highlightOnly: true }));
         }
       });
 
